@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Verb Conjugation Master 🚀 V3.0</title>
+    <style>
+        :root {
+            /* Dark Theme - Warm Eye-Friendly Palette */
+            --bg-grad-1: linear-gradient(135deg, #30d158 0%, #30d158 100%);
+            --bg-grad-2: linear-gradient(135deg, #30d158 0%, #30d74b 100%);
+            --bg-color: #2c2c2e;
+            --container-bg: rgba(44, 44, 46, 0.85);
+            --table-bg: rgba(44, 44, 46, 0.95);
+            --text-color: #f2f2f7;
+            --header-bg: rgba(44, 44, 46, 0.95);
+            --header-text-color: #f2f2f7;
+            --primary-color: #30d158;
+            --secondary-color: #8e8e93;
+            --verb-separator: #48484a;
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --highlight-row: rgba(48, 209, 88, 0.15);
+            --highlight-verb: var(--highlight-header);
+            --highlight-header: rgba(48, 209, 88, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', 'sans-serif';
+            background: var(--bg-grad-1);
+            color: var(--text-color);
+            min-height: 100vh;
+            animation: gradientShift 12s ease-in-out infinite alternate;
+            transition: background 0.5s ease;
+            overflow-x: auto;
+            min-width: 850px;
+        }
+
+        @keyframes gradientShift {
+            0% { background: var(--bg-grad-1); }
+            100% { background: var(--bg-grad-2); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: var(--container-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 25px 45px var(--shadow-light);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: background 0.5s ease;
+            /* Remove any transform that might break sticky positioning */
+            transform: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--header-text-color);
+            text-shadow: 2px 2px 4px var(--shadow-dark);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--shadow-dark);
+        }
+
+        .mode-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .verb-table {
+            background: var(--table-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px var(--shadow-light);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: static;
+            padding: 0;
+            transform: none;
+        }
+
+        .table-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+            position: static;
+            transform: none;
+        }
+
+        table::before {
+            display: none;
+        }
+
+
+        th {
+            background: var(--header-bg);
+            color: var(--header-text-color);
+            padding: 18px 15px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 1px 0 var(--verb-separator), 0 2px 8px var(--shadow-light);
+            border-bottom: 1px solid var(--verb-separator);
+            backdrop-filter: blur(10px);
+        }
+
+        th:first-child {
+            border-top-left-radius: 16px;
+        }
+
+        th:last-child {
+            border-top-right-radius: 16px;
+        }
+
+        th.sticky-col-1,
+        th.sticky-col-2 {
+            z-index: 3;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        td.sticky-col-1,
+        td.sticky-col-2 {
+            position: sticky;
+            z-index: 1;
+            background: var(--table-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        .sticky-col-1 {
+            left: 0;
+        }
+        
+        .sticky-col-2 {
+            /* left value is set by JS for robustness */
+        }
+
+        td {
+            padding: 14px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--verb-separator);
+            transition: all 0.3s ease;
+            background: var(--table-bg);
+        }
+
+        .verb-name, .pronoun-cell {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.05em;
+            text-shadow: 0 1px 2px var(--shadow-light);
+        }
+
+        .highlight-pronoun {
+            background: var(--highlight-header) !important;
+            color: var(--primary-color) !important;
+            transition: all 0.2s ease;
+        }
+
+        .conjugation {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+        }
+
+        .highlight-cell {
+            background: var(--highlight-row) !important;
+            box-shadow: inset 0 0 0 2px var(--primary-color);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .highlight-tense-header {
+            background: var(--highlight-header) !important;
+            color: var(--primary-color) !important;
+            transition: all 0.2s ease;
+        }
+
+        .highlight-verb {
+            background: var(--highlight-verb) !important;
+            color: var(--primary-color) !important;
+            transition: all 0.2s ease;
+        }
+
+        .verb-separator td {
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .quiz-section, .stats-section {
+            display: none;
+            background: var(--table-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px var(--shadow-light);
+        }
+
+        .quiz-question {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .quiz-input {
+            padding: 12px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-size: 1.1em;
+            margin: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        .quiz-input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .quiz-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .score {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .correct { border-color: #4caf50 !important; }
+        .incorrect { border-color: #f44336 !important; }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(120, 120, 120, 0.3);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--container-bg);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 10px; }
+            .header h1 { font-size: 1.8em; }
+            .header p { padding: 0 10px; }
+
+            .controls { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 20px; 
+            }
+            
+            .mode-selector {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                width: 100%;
+                max-width: 400px;
+            }
+            .mode-btn {
+                padding: 12px 5px;
+                font-size: 0.85em;
+            }
+
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.85em;
+                white-space: nowrap; /* Prevent line breaks in cells */
+            }
+            .verb-name {
+                white-space: normal; /* Allow verb name to wrap if needed */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>French Verb Conjugation Master 🚀 V3.0</h1>
+            <p>📖 Systematic Learning of French Three Verb Groups — 6 Core Tenses</p>
+        </div>
+
+        <div class="controls">
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="showView('table')">All</button>
+                <button class="mode-btn" onclick="showGroup('group1')">🎯 Group 1 (-er)</button>
+                <button class="mode-btn" onclick="showGroup('group2')">🎯 Group 2 (-ir)</button>
+                <button class="mode-btn" onclick="showGroup('group3')">🎯 Group 3 (Irregular)</button>
+            </div>
+        </div>
+
+        <div id="table-section" class="verb-table">
+            <div id="group1-table">
+                <h3 style="color: var(--primary-color); text-align: center; margin: 20px 0;">Group 1 Verbs (-er Regular Verbs)</h3>
+                <table>
+                    <thead>
+                        <tr id="group1-header">
+                            <!-- Header generated by JS -->
+                        </tr>
+                    </thead>
+                    <tbody id="group1-body">
+                        <!-- Content generated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="group2-table" style="margin-top: 30px;">
+                <h3 style="color: var(--primary-color); text-align: center; margin: 20px 0;">Group 2 Verbs (-ir Regular Verbs)</h3>
+                <table>
+                    <thead>
+                        <tr id="group2-header">
+                            <!-- Header generated by JS -->
+                        </tr>
+                    </thead>
+                    <tbody id="group2-body">
+                        <!-- Content generated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="group3-table" style="margin-top: 30px;">
+                <h3 style="color: var(--primary-color); text-align: center; margin: 20px 0;">Group 3 Verbs (Irregular Verbs)</h3>
+                <table>
+                    <thead>
+                        <tr id="group3-header">
+                            <!-- Header generated by JS -->
+                        </tr>
+                    </thead>
+                    <tbody id="group3-body">
+                        <!-- Content generated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="quiz-section" class="quiz-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="score" id="score">Score: 0 / 0</div>
+            <div class="quiz-question" id="question"></div>
+            <input type="text" class="quiz-input" id="answer" placeholder="Enter your answer..." onkeypress="checkEnter(event)">
+            <br>
+            <button class="quiz-btn" onclick="checkAnswer()">Submit</button>
+            <button class="quiz-btn" onclick="generateQuestion()">Next Question</button>
+        </div>
+
+        <div id="stats-section" class="stats-section">
+            <h2 style="color: var(--text-color); margin-bottom: 20px;">📊 Learning Statistics</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-questions">0</div>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="correct-answers">0</div>
+                    <div class="stat-label">Correct Answers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="accuracy-rate">0%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="current-streak">0</div>
+                    <div class="stat-label">Current Streak</div>
+                </div>
+            </div>
+            <button class="quiz-btn" onclick="clearStats()">Clear Statistics</button>
+        </div>
+    </div>
+
+    <script>
+        // 第一组动词：-er规则动词
+        const group1Verbs = {
+            'parler': {
+                meaning: 'to speak',
+                tenses: {
+                    'Présent': ['je parle', 'tu parles', 'il parle', 'nous parlons', 'vous parlez', 'ils parlent'],
+                    'Passé Composé': ["j'ai parlé", "tu as parlé", "il a parlé", "nous avons parlé", "vous avez parlé", "ils ont parlé"],
+                    'Imparfait': ["je parlais", "tu parlais", "il parlait", "nous parlions", "vous parliez", "ils parlaient"],
+                    'Futur Simple': ["je parlerai", "tu parleras", "il parlera", "nous parlerons", "vous parlerez", "ils parleront"],
+                    'Conditionnel': ["je parlerais", "tu parlerais", "il parlerait", "nous parlerions", "vous parleriez", "ils parleraient"],
+                    'Subjonctif Présent': ["que je parle", "que tu parles", "qu'il parle", "que nous parlions", "que vous parliez", "qu'ils parlent"]
+                }
+            },
+            'donner': {
+                meaning: 'to give',
+                tenses: {
+                    'Présent': ['je donne', 'tu donnes', 'il donne', 'nous donnons', 'vous donnez', 'ils donnent'],
+                    'Passé Composé': ["j'ai donné", "tu as donné", "il a donné", "nous avons donné", "vous avez donné", "ils ont donné"],
+                    'Imparfait': ["je donnais", "tu donnais", "il donnait", "nous donnions", "vous donniez", "ils donnaient"],
+                    'Futur Simple': ["je donnerai", "tu donneras", "il donnera", "nous donnerons", "vous donnerez", "ils donneront"],
+                    'Conditionnel': ["je donnerais", "tu donnerais", "il donnerait", "nous donnerions", "vous donneriez", "ils donneraient"],
+                    'Subjonctif Présent': ["que je donne", "que tu donnes", "qu'il donne", "que nous donnions", "que vous donniez", "qu'ils donnent"]
+                }
+            },
+            'demander': {
+                meaning: 'to ask',
+                tenses: {
+                    'Présent': ['je demande', 'tu demandes', 'il demande', 'nous demandons', 'vous demandez', 'ils demandent'],
+                    'Passé Composé': ["j'ai demandé", "tu as demandé", "il a demandé", "nous avons demandé", "vous avez demandé", "ils ont demandé"],
+                    'Imparfait': ["je demandais", "tu demandais", "il demandait", "nous demandions", "vous demandiez", "ils demandaient"],
+                    'Futur Simple': ["je demanderai", "tu demanderas", "il demandera", "nous demanderons", "vous demanderez", "ils demanderont"],
+                    'Conditionnel': ["je demanderais", "tu demanderais", "il demanderait", "nous demanderions", "vous demanderiez", "ils demanderaient"],
+                    'Subjonctif Présent': ["que je demande", "que tu demandes", "qu'il demande", "que nous demandions", "que vous demandiez", "qu'ils demandent"]
+                }
+            },
+            'trouver': {
+                meaning: 'to find',
+                tenses: {
+                    'Présent': ['je trouve', 'tu trouves', 'il trouve', 'nous trouvons', 'vous trouvez', 'ils trouvent'],
+                    'Passé Composé': ["j'ai trouvé", "tu as trouvé", "il a trouvé", "nous avons trouvé", "vous avez trouvé", "ils ont trouvé"],
+                    'Imparfait': ["je trouvais", "tu trouvais", "il trouvait", "nous trouvions", "vous trouviez", "ils trouvaient"],
+                    'Futur Simple': ["je trouverai", "tu trouveras", "il trouvera", "nous trouverons", "vous trouverez", "ils trouveront"],
+                    'Conditionnel': ["je trouverais", "tu trouverais", "il trouverait", "nous trouverions", "vous trouveriez", "ils trouveraient"],
+                    'Subjonctif Présent': ["que je trouve", "que tu trouves", "qu'il trouve", "que nous trouvions", "que vous trouviez", "qu'ils trouvent"]
+                }
+            },
+            'passer': {
+                meaning: 'to pass / to spend time',
+                tenses: {
+                    'Présent': ['je passe', 'tu passes', 'il passe', 'nous passons', 'vous passez', 'ils passent'],
+                    'Passé Composé': ["j'ai passé", "tu as passé", "il a passé", "nous avons passé", "vous avez passé", "ils ont passé"],
+                    'Imparfait': ["je passais", "tu passais", "il passait", "nous passions", "vous passiez", "ils passaient"],
+                    'Futur Simple': ["je passerai", "tu passeras", "il passera", "nous passerons", "vous passerez", "ils passeront"],
+                    'Conditionnel': ["je passerais", "tu passerais", "il passerait", "nous passerions", "vous passeriez", "ils passeraient"],
+                    'Subjonctif Présent': ["que je passe", "que tu passes", "qu'il passe", "que nous passions", "que vous passiez", "qu'ils passent"]
+                }
+            },
+            'rester': {
+                meaning: 'to stay / to remain',
+                tenses: {
+                    'Présent': ['je reste', 'tu restes', 'il reste', 'nous restons', 'vous restez', 'ils restent'],
+                    'Passé Composé': ["je suis resté", "tu es resté", "il est resté", "nous sommes restés", "vous êtes resté", "ils sont restés"],
+                    'Imparfait': ["je restais", "tu restais", "il restait", "nous restions", "vous restiez", "ils restaient"],
+                    'Futur Simple': ["je resterai", "tu resteras", "il restera", "nous resterons", "vous resterez", "ils resteront"],
+                    'Conditionnel': ["je resterais", "tu resterais", "il resterait", "nous resterions", "vous resteriez", "ils resteraient"],
+                    'Subjonctif Présent': ["que je reste", "que tu restes", "qu'il reste", "que nous restions", "que vous restiez", "qu'ils restent"]
+                }
+            },
+            'chercher': {
+                meaning: 'to search / to look for',
+                tenses: {
+                    'Présent': ['je cherche', 'tu cherches', 'il cherche', 'nous cherchons', 'vous cherchez', 'ils cherchent'],
+                    'Passé Composé': ["j'ai cherché", "tu as cherché", "il a cherché", "nous avons cherché", "vous avez cherché", "ils ont cherché"],
+                    'Imparfait': ["je cherchais", "tu cherchais", "il cherchait", "nous cherchions", "vous cherchiez", "ils cherchaient"],
+                    'Futur Simple': ["je chercherai", "tu chercheras", "il cherchera", "nous chercherons", "vous chercherez", "ils chercheront"],
+                    'Conditionnel': ["je chercherais", "tu chercherais", "il chercherait", "nous chercherions", "vous chercheriez", "ils chercheraient"],
+                    'Subjonctif Présent': ["que je cherche", "que tu cherches", "qu'il cherche", "que nous cherchions", "que vous cherchiez", "qu'ils cherchent"]
+                }
+            },
+            'aimer': {
+                meaning: 'to like / to love',
+                tenses: {
+                    'Présent': ["j'aime", 'tu aimes', 'il aime', 'nous aimons', 'vous aimez', 'ils aiment'],
+                    'Passé Composé': ["j'ai aimé", "tu as aimé", "il a aimé", "nous avons aimé", "vous avez aimé", "ils ont aimé"],
+                    'Imparfait': ["j'aimais", "tu aimais", "il aimait", "nous aimions", "vous aimiez", "ils aimaient"],
+                    'Futur Simple': ["j'aimerai", "tu aimeras", "il aimera", "nous aimerons", "vous aimerez", "ils aimeront"],
+                    'Conditionnel': ["j'aimerais", "tu aimerais", "il aimerait", "nous aimerions", "vous aimeriez", "ils aimeraient"],
+                    'Subjonctif Présent': ["que j'aime", "que tu aimes", "qu'il aime", "que nous aimions", "que vous aimiez", "qu'ils aiment"]
+                }
+            },
+            'penser': {
+                meaning: 'to think',
+                tenses: {
+                    'Présent': ['je pense', 'tu penses', 'il pense', 'nous pensons', 'vous pensez', 'ils pensent'],
+                    'Passé Composé': ["j'ai pensé", "tu as pensé", "il a pensé", "nous avons pensé", "vous avez pensé", "ils ont pensé"],
+                    'Imparfait': ["je pensais", "tu pensais", "il pensait", "nous pensions", "vous pensiez", "ils pensaient"],
+                    'Futur Simple': ["je penserai", "tu penseras", "il pensera", "nous penserons", "vous penserez", "ils penseront"],
+                    'Conditionnel': ["je penserais", "tu penserais", "il penserait", "nous penserions", "vous penseriez", "ils penseraient"],
+                    'Subjonctif Présent': ["que je pense", "que tu penses", "qu'il pense", "que nous pensions", "que vous pensiez", "qu'ils pensent"]
+                }
+            },
+            'arriver': {
+                meaning: 'to arrive / to come',
+                tenses: {
+                    'Présent': ["j'arrive", 'tu arrives', 'il arrive', 'nous arrivons', 'vous arrivez', 'ils arrivent'],
+                    'Passé Composé': ["je suis arrivé", "tu es arrivé", "il est arrivé", "nous sommes arrivés", "vous êtes arrivé", "ils sont arrivés"],
+                    'Imparfait': ["j'arrivais", "tu arrivais", "il arrivait", "nous arrivions", "vous arriviez", "ils arrivaient"],
+                    'Futur Simple': ["j'arriverai", "tu arriveras", "il arrivera", "nous arriverons", "vous arriverez", "ils arriveront"],
+                    'Conditionnel': ["j'arriverais", "tu arriverais", "il arriverait", "nous arriverions", "vous arriveriez", "ils arriveraient"],
+                    'Subjonctif Présent': ["que j'arrive", "que tu arrives", "qu'il arrive", "que nous arrivions", "que vous arriviez", "qu'ils arrivent"]
+                }
+            },
+            'montrer': {
+                meaning: 'to show / to point out',
+                tenses: {
+                    'Présent': ['je montre', 'tu montres', 'il montre', 'nous montrons', 'vous montrez', 'ils montrent'],
+                    'Passé Composé': ["j'ai montré", "tu as montré", "il a montré", "nous avons montré", "vous avez montré", "ils ont montré"],
+                    'Imparfait': ["je montrais", "tu montrais", "il montrait", "nous montrions", "vous montriez", "ils montraient"],
+                    'Futur Simple': ["je montrerai", "tu montreras", "il montrera", "nous montrerons", "vous montrerez", "ils montreront"],
+                    'Conditionnel': ["je montrerais", "tu montrerais", "il montrerait", "nous montrerions", "vous montreriez", "ils montreraient"],
+                    'Subjonctif Présent': ["que je montre", "que tu montres", "qu'il montre", "que nous montrions", "que vous montriez", "qu'ils montrent"]
+                }
+            },
+            'regarder': {
+                meaning: 'to watch / to look at',
+                tenses: {
+                    'Présent': ['je regarde', 'tu regardes', 'il regarde', 'nous regardons', 'vous regardez', 'ils regardent'],
+                    'Passé Composé': ["j'ai regardé", "tu as regardé", "il a regardé", "nous avons regardé", "vous avez regardé", "ils ont regardé"],
+                    'Imparfait': ["je regardais", "tu regardais", "il regardait", "nous regardions", "vous regardiez", "ils regardaient"],
+                    'Futur Simple': ["je regarderai", "tu regarderas", "il regardera", "nous regarderons", "vous regarderez", "ils regarderont"],
+                    'Conditionnel': ["je regarderais", "tu regarderais", "il regarderait", "nous regarderions", "vous regarderiez", "ils regarderaient"],
+                    'Subjonctif Présent': ["que je regarde", "que tu regardes", "qu'il regarde", "que nous regardions", "que vous regardiez", "qu'ils regardent"]
+                }
+            },
+            'jouer': {
+                meaning: 'to play / to perform',
+                tenses: {
+                    'Présent': ['je joue', 'tu joues', 'il joue', 'nous jouons', 'vous jouez', 'ils jouent'],
+                    'Passé Composé': ["j'ai joué", "tu as joué", "il a joué", "nous avons joué", "vous avez joué", "ils ont joué"],
+                    'Imparfait': ["je jouais", "tu jouais", "il jouait", "nous jouions", "vous jouiez", "ils jouaient"],
+                    'Futur Simple': ["je jouerai", "tu joueras", "il jouera", "nous jouerons", "vous jouerez", "ils joueront"],
+                    'Conditionnel': ["je jouerais", "tu jouerais", "il jouerait", "nous jouerions", "vous joueriez", "ils joueraient"],
+                    'Subjonctif Présent': ["que je joue", "que tu joues", "qu'il joue", "que nous jouions", "que vous jouiez", "qu'ils jouent"]
+                }
+            },
+            'travailler': {
+                meaning: 'to work',
+                tenses: {
+                    'Présent': ['je travaille', 'tu travailles', 'il travaille', 'nous travaillons', 'vous travaillez', 'ils travaillent'],
+                    'Passé Composé': ["j'ai travaillé", "tu as travaillé", "il a travaillé", "nous avons travaillé", "vous avez travaillé", "ils ont travaillé"],
+                    'Imparfait': ["je travaillais", "tu travaillais", "il travaillait", "nous travaillions", "vous travailliez", "ils travaillaient"],
+                    'Futur Simple': ["je travaillerai", "tu travailleras", "il travaillera", "nous travaillerons", "vous travaillerez", "ils travailleront"],
+                    'Conditionnel': ["je travaillerais", "tu travaillerais", "il travaillerait", "nous travaillerions", "vous travailleriez", "ils travailleraient"],
+                    'Subjonctif Présent': ["que je travaille", "que tu travailles", "qu'il travaille", "que nous travaillions", "que vous travailliez", "qu'ils travaillent"]
+                }
+            }
+        };
+
+        // 第二组动词：-ir规则动词
+        const group2Verbs = {
+            'finir': {
+                meaning: 'to finish',
+                tenses: {
+                    'Présent': ['je finis', 'tu finis', 'il finit', 'nous finissons', 'vous finissez', 'ils finissent'],
+                    'Passé Composé': ["j'ai fini", "tu as fini", "il a fini", "nous avons fini", "vous avez fini", "ils ont fini"],
+                    'Imparfait': ["je finissais", "tu finissais", "il finissait", "nous finissions", "vous finissiez", "ils finissaient"],
+                    'Futur Simple': ["je finirai", "tu finiras", "il finira", "nous finirons", "vous finirez", "ils finiront"],
+                    'Conditionnel': ["je finirais", "tu finirais", "il finirait", "nous finirions", "vous finiriez", "ils finiraient"],
+                    'Subjonctif Présent': ["que je finisse", "que tu finisses", "qu'il finisse", "que nous finissions", "que vous finissiez", "qu'ils finissent"]
+                }
+            },
+            'choisir': {
+                meaning: 'to choose',
+                tenses: {
+                    'Présent': ['je choisis', 'tu choisis', 'il choisit', 'nous choisissons', 'vous choisissez', 'ils choisissent'],
+                    'Passé Composé': ["j'ai choisi", "tu as choisi", "il a choisi", "nous avons choisi", "vous avez choisi", "ils ont choisi"],
+                    'Imparfait': ["je choisissais", "tu choisissais", "il choisissait", "nous choisissions", "vous choisissiez", "ils choisissaient"],
+                    'Futur Simple': ["je choisirai", "tu choisiras", "il choisira", "nous choisirons", "vous choisirez", "ils choisiront"],
+                    'Conditionnel': ["je choisirais", "tu choisirais", "il choisirait", "nous choisirions", "vous choisiriez", "ils choisiraient"],
+                    'Subjonctif Présent': ["que je choisisse", "que tu choisisses", "qu'il choisisse", "que nous choisissions", "que vous choisissiez", "qu'ils choisissent"]
+                }
+            },
+            'réussir': {
+                meaning: 'to succeed',
+                tenses: {
+                    'Présent': ['je réussis', 'tu réussis', 'il réussit', 'nous réussissons', 'vous réussissez', 'ils réussissent'],
+                    'Passé Composé': ["j'ai réussi", "tu as réussi", "il a réussi", "nous avons réussi", "vous avez réussi", "ils ont réussi"],
+                    'Imparfait': ["je réussissais", "tu réussissais", "il réussissait", "nous réussissions", "vous réussissiez", "ils réussissaient"],
+                    'Futur Simple': ["je réussirai", "tu réussiras", "il réussira", "nous réussirons", "vous réussirez", "ils réussiront"],
+                    'Conditionnel': ["je réussirais", "tu réussirais", "il réussirait", "nous réussirions", "vous réussiriez", "ils réussiraient"],
+                    'Subjonctif Présent': ["que je réussisse", "que tu réussisses", "qu'il réussisse", "que nous réussissions", "que vous réussissiez", "qu'ils réussissent"]
+                }
+            },
+            'agir': {
+                meaning: 'to act / to do',
+                tenses: {
+                    'Présent': ["j'agis", 'tu agis', 'il agit', 'nous agissons', 'vous agissez', 'ils agissent'],
+                    'Passé Composé': ["j'ai agi", "tu as agi", "il a agi", "nous avons agi", "vous avez agi", "ils ont agi"],
+                    'Imparfait': ["j'agissais", "tu agissais", "il agissait", "nous agissions", "vous agissiez", "ils agissaient"],
+                    'Futur Simple': ["j'agirai", "tu agiras", "il agira", "nous agirons", "vous agirez", "ils agiront"],
+                    'Conditionnel': ["j'agirais", "tu agirais", "il agirait", "nous agirions", "vous agiriez", "ils agiraient"],
+                    'Subjonctif Présent': ["que j'agisse", "que tu agisses", "qu'il agisse", "que nous agissions", "que vous agissiez", "qu'ils agissent"]
+                }
+            },
+            'grandir': {
+                meaning: 'to grow up',
+                tenses: {
+                    'Présent': ['je grandis', 'tu grandis', 'il grandit', 'nous grandissons', 'vous grandissez', 'ils grandissent'],
+                    'Passé Composé': ["j'ai grandi", "tu as grandi", "il a grandi", "nous avons grandi", "vous avez grandi", "ils ont grandi"],
+                    'Imparfait': ["je grandissais", "tu grandissais", "il grandissait", "nous grandissions", "vous grandissiez", "ils grandissaient"],
+                    'Futur Simple': ["je grandirai", "tu grandiras", "il grandira", "nous grandirons", "vous grandirez", "ils grandiront"],
+                    'Conditionnel': ["je grandirais", "tu grandirais", "il grandirait", "nous grandirions", "vous grandiriez", "ils grandiraient"],
+                    'Subjonctif Présent': ["que je grandisse", "que tu grandisses", "qu'il grandisse", "que nous grandissions", "que vous grandissiez", "qu'ils grandissent"]
+                }
+            },
+            'réfléchir': {
+                meaning: 'to think / to reflect',
+                tenses: {
+                    'Présent': ['je réfléchis', 'tu réfléchis', 'il réfléchit', 'nous réfléchissons', 'vous réfléchissez', 'ils réfléchissent'],
+                    'Passé Composé': ["j'ai réfléchi", "tu as réfléchi", "il a réfléchi", "nous avons réfléchi", "vous avez réfléchi", "ils ont réfléchi"],
+                    'Imparfait': ["je réfléchissais", "tu réfléchissais", "il réfléchissait", "nous réfléchissions", "vous réfléchissiez", "ils réfléchissaient"],
+                    'Futur Simple': ["je réfléchirai", "tu réfléchiras", "il réfléchira", "nous réfléchirons", "vous réfléchirez", "ils réfléchiront"],
+                    'Conditionnel': ["je réfléchirais", "tu réfléchirais", "il réfléchirait", "nous réfléchirions", "vous réfléchiriez", "ils réfléchiraient"],
+                    'Subjonctif Présent': ["que je réfléchisse", "que tu réfléchisses", "qu'il réfléchisse", "que nous réfléchissions", "que vous réfléchissiez", "qu'ils réfléchissent"]
+                }
+            }
+        };
+
+        // 第三组动词：不规则动词
+        const group3Verbs = {
+            'être': {
+                meaning: 'to be',
+                tenses: {
+                    'Présent': ['je suis', 'tu es', 'il est', 'nous sommes', 'vous êtes', 'ils sont'],
+                    'Passé Composé': ["j'ai été", "tu as été", "il a été", "nous avons été", "vous avez été", "ils ont été"],
+                    'Imparfait': ["j'étais", "tu étais", "il était", "nous étions", "vous étiez", "ils étaient"],
+                    'Futur Simple': ["je serai", "tu seras", "il sera", "nous serons", "vous serez", "ils seront"],
+                    'Conditionnel': ["je serais", "tu serais", "il serait", "nous serions", "vous seriez", "ils seraient"],
+                    'Subjonctif Présent': ["que je sois", "que tu sois", "qu'il soit", "que nous soyons", "que vous soyez", "qu'ils soient"]
+                }
+            },
+            'avoir': {
+                meaning: 'to have',
+                tenses: {
+                    'Présent': ["j'ai", "tu as", "il a", "nous avons", "vous avez", "ils ont"],
+                    'Passé Composé': ["j'ai eu", "tu as eu", "il a eu", "nous avons eu", "vous avez eu", "ils ont eu"],
+                    'Imparfait': ["j'avais", "tu avais", "il avait", "nous avions", "vous aviez", "ils avaient"],
+                    'Futur Simple': ["j'aurai", "tu auras", "il aura", "nous aurons", "vous aurez", "ils auront"],
+                    'Conditionnel': ["j'aurais", "tu aurais", "il aurait", "nous aurions", "vous auriez", "ils auraient"],
+                    'Subjonctif Présent': ["que j'aie", "que tu aies", "qu'il ait", "que nous ayons", "que vous ayez", "qu'ils aient"]
+                }
+            },
+            'faire': {
+                meaning: 'to do / to make',
+                tenses: {
+                    'Présent': ['je fais', 'tu fais', 'il fait', 'nous faisons', 'vous faites', 'ils font'],
+                    'Passé Composé': ["j'ai fait", "tu as fait", "il a fait", "nous avons fait", "vous avez fait", "ils ont fait"],
+                    'Imparfait': ["je faisais", "tu faisais", "il faisait", "nous faisions", "vous faisiez", "ils faisaient"],
+                    'Futur Simple': ["je ferai", "tu feras", "il fera", "nous ferons", "vous ferez", "ils feront"],
+                    'Conditionnel': ["je ferais", "tu ferais", "il ferait", "nous ferions", "vous feriez", "ils feraient"],
+                    'Subjonctif Présent': ["que je fasse", "que tu fasses", "qu'il fasse", "que nous fassions", "que vous fassiez", "qu'ils fassent"]
+                }
+            },
+            'aller': {
+                meaning: 'to go',
+                tenses: {
+                    'Présent': ['je vais', 'tu vas', 'il va', 'nous allons', 'vous allez', 'ils vont'],
+                    'Passé Composé': ["je suis allé", "tu es allé", "il est allé", "nous sommes allés", "vous êtes allé", "ils sont allés"],
+                    'Imparfait': ["j'allais", "tu allais", "il allait", "nous allions", "vous alliez", "ils allaient"],
+                    'Futur Simple': ["j'irai", "tu iras", "il ira", "nous irons", "vous irez", "ils iront"],
+                    'Conditionnel': ["j'irais", "tu irais", "il irait", "nous irions", "vous iriez", "ils iraient"],
+                    'Subjonctif Présent': ["que j'aille", "que tu ailles", "qu'il aille", "que nous allions", "que vous alliez", "qu'ils aillent"]
+                }
+            },
+            'pouvoir': {
+                meaning: 'can / to be able to',
+                tenses: {
+                    'Présent': ['je peux', 'tu peux', 'il peut', 'nous pouvons', 'vous pouvez', 'ils peuvent'],
+                    'Passé Composé': ["j'ai pu", "tu as pu", "il a pu", "nous avons pu", "vous avez pu", "ils ont pu"],
+                    'Imparfait': ["je pouvais", "tu pouvais", "il pouvait", "nous pouvions", "vous pouviez", "ils pouvaient"],
+                    'Futur Simple': ["je pourrai", "tu pourras", "il pourra", "nous pourrons", "vous pourrez", "ils pourront"],
+                    'Conditionnel': ["je pourrais", "tu pourrais", "il pourrait", "nous pourrions", "vous pourriez", "ils pourraient"],
+                    'Subjonctif Présent': ["que je puisse", "que tu puisses", "qu'il puisse", "que nous puissions", "que vous puissiez", "qu'ils puissent"]
+                }
+            },
+            'vouloir': {
+                meaning: 'to want',
+                tenses: {
+                    'Présent': ['je veux', 'tu veux', 'il veut', 'nous voulons', 'vous voulez', 'ils veulent'],
+                    'Passé Composé': ["j'ai voulu", "tu as voulu", "il a voulu", "nous avons voulu", "vous avez voulu", "ils ont voulu"],
+                    'Imparfait': ["je voulais", "tu voulais", "il voulait", "nous voulions", "vous vouliez", "ils voulaient"],
+                    'Futur Simple': ["je voudrai", "tu voudras", "il voudra", "nous voudrons", "vous voudrez", "ils voudront"],
+                    'Conditionnel': ["je voudrais", "tu voudrais", "il voudrait", "nous voudrions", "vous voudriez", "ils voudraient"],
+                    'Subjonctif Présent': ["que je veuille", "que tu veuilles", "qu'il veuille", "que nous voulions", "que vous vouliez", "qu'ils veuillent"]
+                }
+            },
+            'savoir': {
+                meaning: 'to know / to know how',
+                tenses: {
+                    'Présent': ['je sais', 'tu sais', 'il sait', 'nous savons', 'vous savez', 'ils savent'],
+                    'Passé Composé': ["j'ai su", "tu as su", "il a su", "nous avons su", "vous avez su", "ils ont su"],
+                    'Imparfait': ["je savais", "tu savais", "il savait", "nous savions", "vous saviez", "ils savaient"],
+                    'Futur Simple': ["je saurai", "tu sauras", "il saura", "nous saurons", "vous saurez", "ils sauront"],
+                    'Conditionnel': ["je saurais", "tu saurais", "il saurait", "nous saurions", "vous sauriez", "ils sauraient"],
+                    'Subjonctif Présent': ["que je sache", "que tu saches", "qu'il sache", "que nous sachions", "que vous sachiez", "qu'ils sachent"]
+                }
+            },
+            'venir': {
+                meaning: 'to come',
+                tenses: {
+                    'Présent': ['je viens', 'tu viens', 'il vient', 'nous venons', 'vous venez', 'ils viennent'],
+                    'Passé Composé': ["je suis venu", "tu es venu", "il est venu", "nous sommes venus", "vous êtes venu", "ils sont venus"],
+                    'Imparfait': ["je venais", "tu venais", "il venait", "nous venions", "vous veniez", "ils venaient"],
+                    'Futur Simple': ["je viendrai", "tu viendras", "il viendra", "nous viendrons", "vous viendrez", "ils viendront"],
+                    'Conditionnel': ["je viendrais", "tu viendrais", "il viendrait", "nous viendrions", "vous viendriez", "ils viendraient"],
+                    'Subjonctif Présent': ["que je vienne", "que tu viennes", "qu'il vienne", "que nous venions", "que vous veniez", "qu'ils viennent"]
+                }
+            },
+            'dire': {
+                meaning: 'to say / to tell',
+                tenses: {
+                    'Présent': ['je dis', 'tu dis', 'il dit', 'nous disons', 'vous dites', 'ils disent'],
+                    'Passé Composé': ["j'ai dit", "tu as dit", "il a dit", "nous avons dit", "vous avez dit", "ils ont dit"],
+                    'Imparfait': ["je disais", "tu disais", "il disait", "nous disions", "vous disiez", "ils disaient"],
+                    'Futur Simple': ["je dirai", "tu diras", "il dira", "nous dirons", "vous direz", "ils diront"],
+                    'Conditionnel': ["je dirais", "tu dirais", "il dirait", "nous dirions", "vous diriez", "ils diraient"],
+                    'Subjonctif Présent': ["que je dise", "que tu dises", "qu'il dise", "que nous disions", "que vous disiez", "qu'ils disent"]
+                }
+            },
+            'devoir': {
+                meaning: 'must / should',
+                tenses: {
+                    'Présent': ['je dois', 'tu dois', 'il doit', 'nous devons', 'vous devez', 'ils doivent'],
+                    'Passé Composé': ["j'ai dû", "tu as dû", "il a dû", "nous avons dû", "vous avez dû", "ils ont dû"],
+                    'Imparfait': ["je devais", "tu devais", "il devait", "nous devions", "vous deviez", "ils devaient"],
+                    'Futur Simple': ["je devrai", "tu devras", "il devra", "nous devrons", "vous devrez", "ils devront"],
+                    'Conditionnel': ["je devrais", "tu devrais", "il devrait", "nous devrions", "vous devriez", "ils devraient"],
+                    'Subjonctif Présent': ["que je doive", "que tu doives", "qu'il doive", "que nous devions", "que vous deviez", "qu'ils doivent"]
+                }
+            },
+            'prendre': {
+                meaning: 'to take',
+                tenses: {
+                    'Présent': ['je prends', 'tu prends', 'il prend', 'nous prenons', 'vous prenez', 'ils prennent'],
+                    'Passé Composé': ["j'ai pris", "tu as pris", "il a pris", "nous avons pris", "vous avez pris", "ils ont pris"],
+                    'Imparfait': ["je prenais", "tu prenais", "il prenait", "nous prenions", "vous preniez", "ils prenaient"],
+                    'Futur Simple': ["je prendrai", "tu prendras", "il prendra", "nous prendrons", "vous prendrez", "ils prendront"],
+                    'Conditionnel': ["je prendrais", "tu prendrais", "il prendrait", "nous prendrions", "vous prendriez", "ils prendraient"],
+                    'Subjonctif Présent': ["que je prenne", "que tu prennes", "qu'il prenne", "que nous prenions", "que vous preniez", "qu'ils prennent"]
+                }
+            },
+            'mettre': {
+                meaning: 'to put / to place',
+                tenses: {
+                    'Présent': ['je mets', 'tu mets', 'il met', 'nous mettons', 'vous mettez', 'ils mettent'],
+                    'Passé Composé': ["j'ai mis", "tu as mis", "il a mis", "nous avons mis", "vous avez mis", "ils ont mis"],
+                    'Imparfait': ["je mettais", "tu mettais", "il mettait", "nous mettions", "vous mettiez", "ils mettaient"],
+                    'Futur Simple': ["je mettrai", "tu mettras", "il mettra", "nous mettrons", "vous mettrez", "ils mettront"],
+                    'Conditionnel': ["je mettrais", "tu mettrais", "il mettrait", "nous mettrions", "vous mettriez", "ils mettraient"],
+                    'Subjonctif Présent': ["que je mette", "que tu mettes", "qu'il mette", "que nous mettions", "que vous mettiez", "qu'ils mettent"]
+                }
+            },
+            'voir': {
+                meaning: 'to see',
+                tenses: {
+                    'Présent': ['je vois', 'tu vois', 'il voit', 'nous voyons', 'vous voyez', 'ils voient'],
+                    'Passé Composé': ["j'ai vu", "tu as vu", "il a vu", "nous avons vu", "vous avez vu", "ils ont vu"],
+                    'Imparfait': ["je voyais", "tu voyais", "il voyait", "nous voyions", "vous voyiez", "ils voyaient"],
+                    'Futur Simple': ["je verrai", "tu verras", "il verra", "nous verrons", "vous verrez", "ils verront"],
+                    'Conditionnel': ["je verrais", "tu verrais", "il verrait", "nous verrions", "vous verriez", "ils verraient"],
+                    'Subjonctif Présent': ["que je voie", "que tu voies", "qu'il voie", "que nous voyions", "que vous voyiez", "qu'ils voient"]
+                }
+            },
+            'croire': {
+                meaning: 'to believe / to think',
+                tenses: {
+                    'Présent': ['je crois', 'tu crois', 'il croit', 'nous croyons', 'vous croyez', 'ils croient'],
+                    'Passé Composé': ["j'ai cru", "tu as cru", "il a cru", "nous avons cru", "vous avez cru", "ils ont cru"],
+                    'Imparfait': ["je croyais", "tu croyais", "il croyait", "nous croyions", "vous croyiez", "ils croyaient"],
+                    'Futur Simple': ["je croirai", "tu croiras", "il croira", "nous croirons", "vous croirez", "ils croiront"],
+                    'Conditionnel': ["je croirais", "tu croirais", "il croirait", "nous croirions", "vous croiriez", "ils croiraient"],
+                    'Subjonctif Présent': ["que je croie", "que tu croies", "qu'il croie", "que nous croyions", "que vous croyiez", "qu'ils croient"]
+                }
+            },
+            'tenir': {
+                meaning: 'to hold / to keep',
+                tenses: {
+                    'Présent': ['je tiens', 'tu tiens', 'il tient', 'nous tenons', 'vous tenez', 'ils tiennent'],
+                    'Passé Composé': ["j'ai tenu", "tu as tenu", "il a tenu", "nous avons tenu", "vous avez tenu", "ils ont tenu"],
+                    'Imparfait': ["je tenais", "tu tenais", "il tenait", "nous tenions", "vous teniez", "ils tenaient"],
+                    'Futur Simple': ["je tiendrai", "tu tiendras", "il tiendra", "nous tiendrons", "vous tiendrez", "ils tiendront"],
+                    'Conditionnel': ["je tiendrais", "tu tiendrais", "il tiendrait", "nous tiendrions", "vous tiendriez", "ils tiendraient"],
+                    'Subjonctif Présent': ["que je tienne", "que tu tiennes", "qu'il tienne", "que nous tenions", "que vous teniez", "qu'ils tiennent"]
+                }
+            },
+            'sortir': {
+                meaning: 'to go out / to leave',
+                tenses: {
+                    'Présent': ['je sors', 'tu sors', 'il sort', 'nous sortons', 'vous sortez', 'ils sortent'],
+                    'Passé Composé': ["je suis sorti", "tu es sorti", "il est sorti", "nous sommes sortis", "vous êtes sorti", "ils sont sortis"],
+                    'Imparfait': ["je sortais", "tu sortais", "il sortait", "nous sortions", "vous sortiez", "ils sortaient"],
+                    'Futur Simple': ["je sortirai", "tu sortiras", "il sortira", "nous sortirons", "vous sortirez", "ils sortiront"],
+                    'Conditionnel': ["je sortirais", "tu sortirais", "il sortirait", "nous sortirions", "vous sortiriez", "ils sortiraient"],
+                    'Subjonctif Présent': ["que je sorte", "que tu sortes", "qu'il sorte", "que nous sortions", "que vous sortiez", "qu'ils sortent"]
+                }
+            },
+            'comprendre': {
+                meaning: 'to understand',
+                tenses: {
+                    'Présent': ['je comprends', 'tu comprends', 'il comprend', 'nous comprenons', 'vous comprenez', 'ils comprennent'],
+                    'Passé Composé': ["j'ai compris", "tu as compris", "il a compris", "nous avons compris", "vous avez compris", "ils ont compris"],
+                    'Imparfait': ["je comprenais", "tu comprenais", "il comprenait", "nous comprenions", "vous compreniez", "ils comprenaient"],
+                    'Futur Simple': ["je comprendrai", "tu comprendras", "il comprendra", "nous comprendrons", "vous comprendrez", "ils comprendront"],
+                    'Conditionnel': ["je comprendrais", "tu comprendrais", "il comprendrait", "nous comprendrions", "vous comprendriez", "ils comprendraient"],
+                    'Subjonctif Présent': ["que je comprenne", "que tu comprennes", "qu'il comprenne", "que nous comprenions", "que vous compreniez", "qu'ils comprennent"]
+                }
+            },
+            'partir': {
+                meaning: 'to leave / to depart',
+                tenses: {
+                    'Présent': ['je pars', 'tu pars', 'il part', 'nous partons', 'vous partez', 'ils partent'],
+                    'Passé Composé': ["je suis parti", "tu es parti", "il est parti", "nous sommes partis", "vous êtes parti", "ils sont partis"],
+                    'Imparfait': ["je partais", "tu partais", "il partait", "nous partions", "vous partiez", "ils partaient"],
+                    'Futur Simple': ["je partirai", "tu partiras", "il partira", "nous partirons", "vous partirez", "ils partiront"],
+                    'Conditionnel': ["je partirais", "tu partirais", "il partirait", "nous partirions", "vous partiriez", "ils partiraient"],
+                    'Subjonctif Présent': ["que je parte", "que tu partes", "qu'il parte", "que nous partions", "que vous partiez", "qu'ils partent"]
+                }
+            },
+            'vivre': {
+                meaning: 'to live',
+                tenses: {
+                    'Présent': ['je vis', 'tu vis', 'il vit', 'nous vivons', 'vous vivez', 'ils vivent'],
+                    'Passé Composé': ["j'ai vécu", "tu as vécu", "il a vécu", "nous avons vécu", "vous avez vécu", "ils ont vécu"],
+                    'Imparfait': ["je vivais", "tu vivais", "il vivait", "nous vivions", "vous viviez", "ils vivaient"],
+                    'Futur Simple': ["je vivrai", "tu vivras", "il vivra", "nous vivrons", "vous vivrez", "ils vivront"],
+                    'Conditionnel': ["je vivrais", "tu vivrais", "il vivrait", "nous vivrions", "vous vivriez", "ils vivraient"],
+                    'Subjonctif Présent': ["que je vive", "que tu vives", "qu'il vive", "que nous vivions", "que vous viviez", "qu'ils vivent"]
+                }
+            },
+            'recevoir': {
+                meaning: 'to receive',
+                tenses: {
+                    'Présent': ['je reçois', 'tu reçois', 'il reçoit', 'nous recevons', 'vous recevez', 'ils reçoivent'],
+                    'Passé Composé': ["j'ai reçu", "tu as reçu", "il a reçu", "nous avons reçu", "vous avez reçu", "ils ont reçu"],
+                    'Imparfait': ["je recevais", "tu recevais", "il recevait", "nous recevions", "vous receviez", "ils recevaient"],
+                    'Futur Simple': ["je recevrai", "tu recevras", "il recevra", "nous recevrons", "vous recevrez", "ils recevront"],
+                    'Conditionnel': ["je recevrais", "tu recevrais", "il recevrait", "nous recevrions", "vous recevriez", "ils recevraient"],
+                    'Subjonctif Présent': ["que je reçoive", "que tu reçoives", "qu'il reçoive", "que nous recevions", "que vous receviez", "qu'ils reçoivent"]
+                }
+            }
+        };
+
+        // 组合所有动词数据
+        const verbGroups = {
+            group1: group1Verbs,
+            group2: group2Verbs,
+            group3: group3Verbs
+        };
+
+        const allVerbs = {...group1Verbs, ...group2Verbs, ...group3Verbs};
+
+        const persons = ['je', 'tu', 'il/elle/on', 'nous', 'vous', 'ils/elles'];
+        let currentQuestion = null;
+        let score = 0;
+        let totalQuestions = 0;
+        let currentStreak = 0;
+        let quizActive = false;
+        let currentView = 'table';
+
+        document.addEventListener('DOMContentLoaded', initApp);
+
+        function initApp() {
+            generateAllTables();
+
+            // Wrap tables for horizontal scrolling only on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('table').forEach(table => {
+                    if (table.parentElement.classList.contains('table-scroll-wrapper')) return;
+
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'table-scroll-wrapper';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                });
+            }
+
+            loadStats();
+            updateAllStats();
+            showView('table');
+            setupCrossHighlighting();
+
+            setStickyColumnOffsets();
+            window.addEventListener('resize', setStickyColumnOffsets);
+        }
+
+        function setupCrossHighlighting() {
+            document.addEventListener('mouseover', handleCellHover);
+            document.addEventListener('mouseout', clearHighlights);
+        }
+
+        function handleCellHover(event) {
+            const cell = event.target;
+            if (!cell.classList.contains('conjugation')) return;
+
+            clearHighlights();
+
+            const verb = cell.dataset.verb;
+            const colIndex = parseInt(cell.dataset.col);
+            const table = cell.closest('table');
+
+            if (!table) return;
+
+            // Highlight current cell only
+            cell.classList.add('highlight-cell');
+
+            // Highlight tense header
+            const headerRow = table.querySelector('thead tr');
+            if (headerRow && headerRow.children[colIndex]) {
+                headerRow.children[colIndex].classList.add('highlight-tense-header');
+            }
+
+            // Highlight verb name for the same verb
+            const verbNameCell = table.querySelector(`td.verb-name[data-verb="${verb}"]`);
+            if (verbNameCell) {
+                verbNameCell.classList.add('highlight-verb');
+            }
+
+            // Highlight pronoun
+            const parentRow = cell.closest('tr');
+            if (parentRow) {
+                const pronounCell = parentRow.querySelector('.pronoun-cell');
+                if (pronounCell) {
+                    pronounCell.classList.add('highlight-pronoun');
+                }
+            }
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.highlight-cell').forEach(el => el.classList.remove('highlight-cell'));
+            document.querySelectorAll('.highlight-tense-header').forEach(el => el.classList.remove('highlight-tense-header'));
+            document.querySelectorAll('.highlight-verb').forEach(el => el.classList.remove('highlight-verb'));
+            document.querySelectorAll('.highlight-pronoun').forEach(el => el.classList.remove('highlight-pronoun'));
+        }
+
+        function setStickyColumnOffsets() {
+            document.querySelectorAll('table').forEach(table => {
+                const firstColHeader = table.querySelector('th.sticky-col-1');
+                if (firstColHeader) {
+                    const firstColWidth = firstColHeader.getBoundingClientRect().width;
+                    table.querySelectorAll('.sticky-col-2').forEach(cell => {
+                        cell.style.left = `${firstColWidth}px`;
+                    });
+                }
+            });
+        }
+
+        function generateAllTables() {
+            // 生成三组动词的表格
+            generateGroupTable('group1');
+            generateGroupTable('group2');
+            generateGroupTable('group3');
+        }
+
+        function generateGroupTable(groupName) {
+            const verbs = verbGroups[groupName];
+            const tableHead = document.querySelector(`#${groupName}-header`);
+            const tableBody = document.querySelector(`#${groupName}-body`);
+
+            if (!tableHead || !tableBody) return;
+
+            tableBody.innerHTML = '';
+
+            const firstVerbKey = Object.keys(verbs)[0];
+            if (!firstVerbKey) return;
+
+            const tenses = Object.keys(verbs[firstVerbKey].tenses);
+
+            // Generate Header
+            tableHead.innerHTML = `<th class="sticky-col-1">Verb</th><th class="sticky-col-2">Pronoun</th>` + tenses.map(t => `<th>${t.replace(' ', '<br>')}</th>`).join('');
+
+            // Generate Body - 6 rows per verb (one for each pronoun)
+            const verbNames = Object.keys(verbs);
+            verbNames.forEach((verbName, verbIndex) => {
+                const verbInfo = verbs[verbName];
+
+                persons.forEach((person, personIndex) => {
+                    const row = tableBody.insertRow();
+
+                    // Add separator class for first row of each verb (except the first verb)
+                    if (personIndex === 0 && verbIndex > 0) {
+                        row.classList.add('verb-separator');
+                    }
+
+                    // First row of each verb shows verb name and meaning
+                    const verbCell = personIndex === 0
+                        ? `<td class="verb-name sticky-col-1" rowspan="6" data-verb="${verbName}">${verbName}<br>(${verbInfo.meaning})</td>`
+                        : '';
+
+                    // Pronoun cell
+                    const pronounCell = `<td class="pronoun-cell sticky-col-2">${person}</td>`;
+
+                    // Conjugation cells - remove pronouns from the conjugations
+                    const conjugationCells = tenses.map((tense, tenseIndex) => {
+                        const conjugation = verbInfo.tenses[tense][personIndex];
+                        const cleanConjugation = Array.isArray(conjugation) ? conjugation[0] : conjugation;
+                        // Remove pronouns and contractions from the beginning
+                        const verbOnly = cleanConjugation
+                            .replace(/^(je |tu |il |elle |on |nous |vous |ils |elles |j'|qu'il |que je |que tu |que nous |que vous |qu'ils |qu'elles )/i, '')
+                            .trim();
+                        return `<td class="conjugation" data-verb="${verbName}" data-tense="${tense}" data-col="${tenseIndex + 2}">${verbOnly}</td>`;
+                    }).join('');
+
+                    row.innerHTML = verbCell + pronounCell + conjugationCells;
+                });
+            });
+        }
+
+        function showGroup(groupName) {
+            // 隐藏所有组
+            document.getElementById('group1-table').style.display = 'none';
+            document.getElementById('group2-table').style.display = 'none';
+            document.getElementById('group3-table').style.display = 'none';
+
+            // 显示选中的组
+            document.getElementById(groupName + '-table').style.display = 'block';
+
+            // 更新按钮状态
+            const buttons = document.querySelectorAll('.mode-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if (groupName === 'group1') buttons[1].classList.add('active');
+            else if (groupName === 'group2') buttons[2].classList.add('active');
+            else if (groupName === 'group3') buttons[3].classList.add('active');
+
+            currentView = groupName;
+        }
+
+        function loadStats() {
+            const stats = JSON.parse(localStorage.getItem('frenchVerbStats') || '{}');
+            totalQuestions = stats.totalQuestions || 0;
+            score = stats.correctAnswers || 0;
+            currentStreak = stats.currentStreak || 0;
+        }
+
+        function saveStats() {
+            const stats = { totalQuestions, correctAnswers: score, currentStreak };
+            localStorage.setItem('frenchVerbStats', JSON.stringify(stats));
+        }
+
+        function showView(viewName) {
+            if (viewName === 'table') {
+                document.getElementById('table-section').style.display = 'block';
+                document.getElementById('quiz-section').style.display = 'none';
+                document.getElementById('stats-section').style.display = 'none';
+
+                // Ensure all group tables are visible in the "All" view
+                document.getElementById('group1-table').style.display = 'block';
+                document.getElementById('group2-table').style.display = 'block';
+                document.getElementById('group3-table').style.display = 'block';
+
+                const buttons = document.querySelectorAll('.mode-btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                buttons[0].classList.add('active');
+
+                quizActive = false;
+                currentView = 'table';
+            }
+        }
+
+        function generateQuestion() {
+            const verbKeys = Object.keys(allVerbs);
+            const verb = verbKeys[Math.floor(Math.random() * verbKeys.length)];
+            const tenseKeys = Object.keys(allVerbs[verb].tenses);
+            const tense = tenseKeys[Math.floor(Math.random() * tenseKeys.length)];
+            const personIndex = Math.floor(Math.random() * persons.length);
+            const person = persons[personIndex];
+
+            const answer = allVerbs[verb].tenses[tense][personIndex];
+            const question = `${verb} (${allVerbs[verb].meaning}) - ${tense} - ${person}`;
+
+            currentQuestion = {
+                answer: Array.isArray(answer) ? answer : [answer],
+                question: question
+            };
+
+            document.getElementById('question').textContent = question;
+            const answerInput = document.getElementById('answer');
+            answerInput.value = '';
+            answerInput.className = 'quiz-input';
+            answerInput.focus();
+        }
+
+        function checkAnswer() {
+            if (!currentQuestion) return;
+
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const correctAnswers = currentQuestion.answer.map(a => a.toLowerCase());
+            const answerElement = document.getElementById('answer');
+
+            totalQuestions++;
+
+            if (correctAnswers.includes(userAnswer)) {
+                score++;
+                currentStreak++;
+                answerElement.className = 'quiz-input correct';
+            } else {
+                currentStreak = 0;
+                answerElement.className = 'quiz-input incorrect';
+                answerElement.value = `Correct: ${currentQuestion.answer[0]}`;
+            }
+
+            saveStats();
+            updateAllStats();
+
+            setTimeout(() => {
+                if(quizActive) generateQuestion();
+            }, 1500);
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        }
+
+        function updateAllStats() {
+            // Quiz Score
+            const scoreElement = document.getElementById('score');
+            if (scoreElement) scoreElement.textContent = `Score: ${score} / ${totalQuestions}`;
+
+            // Progress Bar
+            const accuracy = totalQuestions > 0 ? (score / totalQuestions) * 100 : 0;
+            const progressElement = document.getElementById('progress');
+            if (progressElement) progressElement.style.width = accuracy + '%';
+
+            // Stats Page
+            const totalElement = document.getElementById('total-questions');
+            if (totalElement) totalElement.textContent = totalQuestions;
+
+            const correctElement = document.getElementById('correct-answers');
+            if (correctElement) correctElement.textContent = score;
+
+            const accuracyElement = document.getElementById('accuracy-rate');
+            if (accuracyElement) accuracyElement.textContent = Math.round(accuracy) + '%';
+
+            const streakElement = document.getElementById('current-streak');
+            if (streakElement) streakElement.textContent = currentStreak;
+        }
+
+        function clearStats() {
+            if (confirm('Are you sure you want to clear all statistics? This action cannot be undone.')) {
+                localStorage.removeItem('frenchVerbStats');
+                totalQuestions = 0;
+                score = 0;
+                currentStreak = 0;
+                updateAllStats();
+            }
+        }
+    </script>
+</body>
+</html>
