@@ -336,6 +336,46 @@
             color: #bbb;
         }
 
+        .examples-cell {
+            background: var(--table-bg);
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .examples-container {
+            width: 100%;
+        }
+
+        .examples-header {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.0em;
+            border-bottom: 1px solid var(--verb-separator);
+            padding-bottom: 8px;
+        }
+
+        .example-item {
+            margin-bottom: 12px;
+        }
+        .example-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .example-fr {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 2px;
+        }
+
+        .example-en {
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            font-style: italic;
+            padding-left: 10px;
+        }
 
         @media (max-width: 768px) {
             .container { padding: 20px 10px; }
@@ -479,7 +519,13 @@
                     'Futur Simple': ["je parlerai", "tu parleras", "il parlera", "nous parlerons", "vous parlerez", "ils parleront"],
                     'Conditionnel': ["je parlerais", "tu parlerais", "il parlerait", "nous parlerions", "vous parleriez", "ils parleraient"],
                     'Subjonctif Présent': ["que je parle", "que tu parles", "qu'il parle", "que nous parlions", "que vous parliez", "qu'ils parlent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je parle anglais et français.', en: 'I speak English and French.' },
+                    { fr: 'Elle parle toujours doucement.', en: 'She always speaks softly.' },
+                    { fr: 'Nous parlons de nos projets.', en: 'We are talking about our projects.' },
+                    { fr: 'Ils ne parlent jamais de politique.', en: 'They never talk about politics.' }
+                ]
             },
             'donner': {
                 meaning: 'to give',
@@ -490,7 +536,13 @@
                     'Futur Simple': ["je donnerai", "tu donneras", "il donnera", "nous donnerons", "vous donnerez", "ils donneront"],
                     'Conditionnel': ["je donnerais", "tu donnerais", "il donnerait", "nous donnerions", "vous donneriez", "ils donneraient"],
                     'Subjonctif Présent': ["que je donne", "que tu donnes", "qu'il donne", "que nous donnions", "que vous donniez", "qu'ils donnent"]
-                }
+                },
+                examples: [
+                    { fr: 'Il m’a donné un cadeau.', en: 'He gave me a gift.' },
+                    { fr: 'Donne-moi la main.', en: 'Give me your hand.' },
+                    { fr: 'Cette leçon donne un bon exemple.', en: 'This lesson gives a good example.' },
+                    { fr: 'Elle donne toujours des conseils.', en: 'She always gives advice.' }
+                ]
             },
             'demander': {
                 meaning: 'to ask',
@@ -501,7 +553,13 @@
                     'Futur Simple': ["je demanderai", "tu demanderas", "il demandera", "nous demanderons", "vous demanderez", "ils demanderont"],
                     'Conditionnel': ["je demanderais", "tu demanderais", "il demanderait", "nous demanderions", "vous demanderiez", "ils demanderaient"],
                     'Subjonctif Présent': ["que je demande", "que tu demandes", "qu'il demande", "que nous demandions", "que vous demandiez", "qu'ils demandent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je demande l’heure à un passant.', en: 'I ask a passerby for the time.' },
+                    { fr: 'Il demande un café au serveur.', en: 'He asks the waiter for a coffee.' },
+                    { fr: 'Elle m’a demandé mon avis.', en: 'She asked for my opinion.' },
+                    { fr: 'Nous demandons de l’aide au professeur.', en: 'We ask the teacher for help.' }
+                ]
             },
             'trouver': {
                 meaning: 'to find',
@@ -512,7 +570,13 @@
                     'Futur Simple': ["je trouverai", "tu trouveras", "il trouvera", "nous trouverons", "vous trouverez", "ils trouveront"],
                     'Conditionnel': ["je trouverais", "tu trouverais", "il trouverait", "nous trouverions", "vous trouveriez", "ils trouveraient"],
                     'Subjonctif Présent': ["que je trouve", "que tu trouves", "qu'il trouve", "que nous trouvions", "que vous trouviez", "qu'ils trouvent"]
-                }
+                },
+                examples: [
+                    { fr: 'J’ai trouvé mes clés.', en: 'I found my keys.' },
+                    { fr: 'Comment trouves-tu ce film ?', en: 'How do you find this movie?' },
+                    { fr: 'Nous avons trouvé une solution.', en: 'We found a solution.' },
+                    { fr: 'Elle trouve ce travail difficile.', en: 'She finds this work difficult.' }
+                ]
             },
             'passer': {
                 meaning: 'to pass / to spend time',
@@ -523,7 +587,13 @@
                     'Futur Simple': ["je passerai", "tu passeras", "il passera", "nous passerons", "vous passerez", "ils passeront"],
                     'Conditionnel': ["je passerais", "tu passerais", "il passerait", "nous passerions", "vous passeriez", "ils passeraient"],
                     'Subjonctif Présent': ["que je passe", "que tu passes", "qu'il passe", "que nous passions", "que vous passiez", "qu'ils passent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je passe devant la poste tous les jours.', en: 'I pass by the post office every day.' },
+                    { fr: 'Nous avons passé une bonne soirée.', en: 'We had a good evening.' },
+                    { fr: 'Le temps passe vite.', en: 'Time goes by quickly.' },
+                    { fr: 'Il passe ses vacances en Espagne.', en: 'He spends his holidays in Spain.' }
+                ]
             },
             'rester': {
                 meaning: 'to stay / to remain',
@@ -534,7 +604,13 @@
                     'Futur Simple': ["je resterai", "tu resteras", "il restera", "nous resterons", "vous resterez", "ils resteront"],
                     'Conditionnel': ["je resterais", "tu resterais", "il resterait", "nous resterions", "vous resteriez", "ils resteraient"],
                     'Subjonctif Présent': ["que je reste", "que tu restes", "qu'il reste", "que nous restions", "que vous restiez", "qu'ils restent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je reste à la maison ce week-end.', en: 'I’m staying at home this weekend.' },
+                    { fr: 'Il reste deux pommes sur la table.', en: 'There are two apples left on the table.' },
+                    { fr: 'Reste calme, s’il te plaît.', en: 'Stay calm, please.' },
+                    { fr: 'Nous restons ici jusqu’à demain.', en: 'We are staying here until tomorrow.' }
+                ]
             },
             'chercher': {
                 meaning: 'to search / to look for',
@@ -545,7 +621,13 @@
                     'Futur Simple': ["je chercherai", "tu chercheras", "il cherchera", "nous chercherons", "vous chercherez", "ils chercheront"],
                     'Conditionnel': ["je chercherais", "tu chercherais", "il chercherait", "nous chercherions", "vous chercheriez", "ils chercheraient"],
                     'Subjonctif Présent': ["que je cherche", "que tu cherches", "qu'il cherche", "que nous cherchions", "que vous cherchiez", "qu'ils cherchent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je cherche mon téléphone.', en: 'I am looking for my phone.' },
+                    { fr: 'Elle cherche un nouvel emploi.', en: 'She is looking for a new job.' },
+                    { fr: 'Ils cherchent une solution au problème.', en: 'They are looking for a solution to the problem.' },
+                    { fr: 'Nous cherchons la vérité.', en: 'We are searching for the truth.' }
+                ]
             },
             'aimer': {
                 meaning: 'to like / to love',
@@ -556,7 +638,13 @@
                     'Futur Simple': ["j'aimerai", "tu aimeras", "il aimera", "nous aimerons", "vous aimerez", "ils aimeront"],
                     'Conditionnel': ["j'aimerais", "tu aimerais", "il aimerait", "nous aimerions", "vous aimeriez", "ils aimeraient"],
                     'Subjonctif Présent': ["que j'aime", "que tu aimes", "qu'il aime", "que nous aimions", "que vous aimiez", "qu'ils aiment"]
-                }
+                },
+                examples: [
+                    { fr: 'J’aime le chocolat.', en: 'I like chocolate.' },
+                    { fr: 'Elle aime lire des romans.', en: 'She likes reading novels.' },
+                    { fr: 'Nous aimons voyager ensemble.', en: 'We like traveling together.' },
+                    { fr: 'Ils s’aiment beaucoup.', en: 'They love each other a lot.' }
+                ]
             },
             'penser': {
                 meaning: 'to think',
@@ -567,7 +655,13 @@
                     'Futur Simple': ["je penserai", "tu penseras", "il pensera", "nous penserons", "vous penserez", "ils penseront"],
                     'Conditionnel': ["je penserais", "tu penserais", "il penserait", "nous penserions", "vous penseriez", "ils penseraient"],
                     'Subjonctif Présent': ["que je pense", "que tu penses", "qu'il pense", "que nous pensions", "que vous pensiez", "qu'ils pensent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je pense à mes amis.', en: 'I’m thinking about my friends.' },
+                    { fr: 'Elle pense que tu es intelligent.', en: 'She thinks you are smart.' },
+                    { fr: 'Nous pensons à partir demain.', en: 'We are thinking of leaving tomorrow.' },
+                    { fr: 'Que penses-tu de ce projet ?', en: 'What do you think of this project?' }
+                ]
             },
             'arriver': {
                 meaning: 'to arrive / to come',
@@ -578,7 +672,13 @@
                     'Futur Simple': ["j'arriverai", "tu arriveras", "il arrivera", "nous arriverons", "vous arriverez", "ils arriveront"],
                     'Conditionnel': ["j'arriverais", "tu arriverais", "il arriverait", "nous arriverions", "vous arriveriez", "ils arriveraient"],
                     'Subjonctif Présent': ["que j'arrive", "que tu arrives", "qu'il arrive", "que nous arrivions", "que vous arriviez", "qu'ils arrivent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je suis arrivé à l’heure.', en: 'I arrived on time.' },
+                    { fr: 'Le train arrive à midi.', en: 'The train arrives at noon.' },
+                    { fr: 'Un accident est arrivé hier.', en: 'An accident happened yesterday.' },
+                    { fr: 'Ce genre de choses arrive souvent.', en: 'This kind of thing happens often.' }
+                ]
             },
             'montrer': {
                 meaning: 'to show / to point out',
@@ -589,7 +689,13 @@
                     'Futur Simple': ["je montrerai", "tu montreras", "il montrera", "nous montrerons", "vous montrerez", "ils montreront"],
                     'Conditionnel': ["je montrerais", "tu montrerais", "il montrerait", "nous montrerions", "vous montreriez", "ils montreraient"],
                     'Subjonctif Présent': ["que je montre", "que tu montres", "qu'il montre", "que nous montrions", "que vous montriez", "qu'ils montrent"]
-                }
+                },
+                examples: [
+                    { fr: 'Montre-moi tes photos.', en: 'Show me your photos.' },
+                    { fr: 'Elle montre le chemin aux touristes.', en: 'She shows the way to the tourists.' },
+                    { fr: 'Ce tableau montre la réalité sociale.', en: 'This painting shows the social reality.' },
+                    { fr: 'Ils montrent toujours beaucoup de respect.', en: 'They always show a lot of respect.' }
+                ]
             },
             'regarder': {
                 meaning: 'to watch / to look at',
@@ -600,7 +706,13 @@
                     'Futur Simple': ["je regarderai", "tu regarderas", "il regardera", "nous regarderons", "vous regarderez", "ils regarderont"],
                     'Conditionnel': ["je regarderais", "tu regarderais", "il regarderait", "nous regarderions", "vous regarderiez", "ils regarderaient"],
                     'Subjonctif Présent': ["que je regarde", "que tu regardes", "qu'il regarde", "que nous regardions", "que vous regardiez", "qu'ils regardent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je regarde un film ce soir.', en: 'I’m watching a movie tonight.' },
+                    { fr: 'Regarde cette image !', en: 'Look at this picture!' },
+                    { fr: 'Ils regardent souvent la télévision.', en: 'They often watch TV.' },
+                    { fr: 'Nous regardons le ciel étoilé.', en: 'We are looking at the starry sky.' }
+                ]
             },
             'jouer': {
                 meaning: 'to play / to perform',
@@ -611,7 +723,13 @@
                     'Futur Simple': ["je jouerai", "tu joueras", "il jouera", "nous jouerons", "vous jouerez", "ils joueront"],
                     'Conditionnel': ["je jouerais", "tu jouerais", "il jouerait", "nous jouerions", "vous joueriez", "ils joueraient"],
                     'Subjonctif Présent': ["que je joue", "que tu joues", "qu'il joue", "que nous jouions", "que vous jouiez", "qu'ils jouent"]
-                }
+                },
+                examples: [
+                    { fr: 'Les enfants jouent dans le jardin.', en: 'The children play in the garden.' },
+                    { fr: 'Il joue au football le samedi.', en: 'He plays soccer on Saturdays.' },
+                    { fr: 'Elle joue du piano depuis dix ans.', en: 'She has been playing the piano for ten years.' },
+                    { fr: 'Il joue un rôle important dans le projet.', en: 'He plays an important role in the project.' }
+                ]
             },
             'travailler': {
                 meaning: 'to work',
@@ -622,7 +740,13 @@
                     'Futur Simple': ["je travaillerai", "tu travailleras", "il travaillera", "nous travaillerons", "vous travaillerez", "ils travailleront"],
                     'Conditionnel': ["je travaillerais", "tu travaillerais", "il travaillerait", "nous travaillerions", "vous travailleriez", "ils travailleraient"],
                     'Subjonctif Présent': ["que je travaille", "que tu travailles", "qu'il travaille", "que nous travaillions", "que vous travailliez", "qu'ils travaillent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je travaille dans une banque.', en: 'I work in a bank.' },
+                    { fr: 'Elle travaille beaucoup ces jours-ci.', en: 'She works a lot these days.' },
+                    { fr: 'Nous travaillons ensemble sur ce projet.', en: 'We work together on this project.' },
+                    { fr: 'Ils travaillent tard le soir.', en: 'They work late at night.' }
+                ]
             }
         };
 
@@ -637,7 +761,13 @@
                     'Futur Simple': ["je finirai", "tu finiras", "il finira", "nous finirons", "vous finirez", "ils finiront"],
                     'Conditionnel': ["je finirais", "tu finirais", "il finirait", "nous finirions", "vous finiriez", "ils finiraient"],
                     'Subjonctif Présent': ["que je finisse", "que tu finisses", "qu'il finisse", "que nous finissions", "que vous finissiez", "qu'ils finissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je finis mes devoirs ce soir.', en: 'I finish my homework tonight.' },
+                    { fr: 'Le film finit à 22 heures.', en: 'The movie ends at 10 p.m.' },
+                    { fr: 'Quand est-ce que tu finis ton travail ?', en: 'When do you finish your work?' },
+                    { fr: 'Nous finissons toujours par trouver une solution.', en: 'We always end up finding a solution.' }
+                ]
             },
             'choisir': {
                 meaning: 'to choose',
@@ -648,7 +778,13 @@
                     'Futur Simple': ["je choisirai", "tu choisiras", "il choisira", "nous choisirons", "vous choisirez", "ils choisiront"],
                     'Conditionnel': ["je choisirais", "tu choisirais", "il choisirait", "nous choisirions", "vous choisiriez", "ils choisiraient"],
                     'Subjonctif Présent': ["que je choisisse", "que tu choisisses", "qu'il choisisse", "que nous choisissions", "que vous choisissiez", "qu'ils choisissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Choisis une couleur, s’il te plaît.', en: 'Choose a color, please.' },
+                    { fr: 'Ils choisissent leurs vêtements avec soin.', en: 'They choose their clothes carefully.' },
+                    { fr: 'Pourquoi as-tu choisi ce livre ?', en: 'Why did you choose this book?' },
+                    { fr: 'Nous devons choisir entre deux options.', en: 'We must choose between two options.' }
+                ]
             },
             'réussir': {
                 meaning: 'to succeed',
@@ -659,7 +795,13 @@
                     'Futur Simple': ["je réussirai", "tu réussiras", "il réussira", "nous réussirons", "vous réussirez", "ils réussiront"],
                     'Conditionnel': ["je réussirais", "tu réussirais", "il réussirait", "nous réussirions", "vous réussiriez", "ils réussiraient"],
                     'Subjonctif Présent': ["que je réussisse", "que tu réussisses", "qu'il réussisse", "que nous réussissions", "que vous réussissiez", "qu'ils réussissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Elle a réussi son examen.', en: 'She passed her exam.' },
+                    { fr: 'Tu réussis toujours à me faire rire.', en: 'You always manage to make me laugh.' },
+                    { fr: 'Ils réussissent dans leurs affaires.', en: 'They succeed in their business.' },
+                    { fr: 'Nous voulons réussir notre projet.', en: 'We want to succeed in our project.' }
+                ]
             },
             'agir': {
                 meaning: 'to act / to do',
@@ -670,7 +812,13 @@
                     'Futur Simple': ["j'agirai", "tu agiras", "il agira", "nous agirons", "vous agirez", "ils agiront"],
                     'Conditionnel': ["j'agirais", "tu agirais", "il agirait", "nous agirions", "vous agiriez", "ils agiraient"],
                     'Subjonctif Présent': ["que j'agisse", "que tu agisses", "qu'il agisse", "que nous agissions", "que vous agissiez", "qu'ils agissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Il faut agir rapidement.', en: 'We must act quickly.' },
+                    { fr: 'Le gouvernement agit contre la pauvreté.', en: 'The government acts against poverty.' },
+                    { fr: 'Ce médicament agit sur le système nerveux.', en: 'This medicine acts on the nervous system.' },
+                    { fr: 'Elle agit toujours avec prudence.', en: 'She always acts carefully.' }
+                ]
             },
             'grandir': {
                 meaning: 'to grow up',
@@ -681,7 +829,13 @@
                     'Futur Simple': ["je grandirai", "tu grandiras", "il grandira", "nous grandirons", "vous grandirez", "ils grandiront"],
                     'Conditionnel': ["je grandirais", "tu grandirais", "il grandirait", "nous grandirions", "vous grandiriez", "ils grandiraient"],
                     'Subjonctif Présent': ["que je grandisse", "que tu grandisses", "qu'il grandisse", "que nous grandissions", "que vous grandissiez", "qu'ils grandissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Mon fils grandit très vite.', en: 'My son is growing up very fast.' },
+                    { fr: 'La ville grandit chaque année.', en: 'The city grows every year.' },
+                    { fr: 'Elle a grandi dans un petit village.', en: 'She grew up in a small village.' },
+                    { fr: 'Leur influence grandit de jour en jour.', en: 'Their influence grows day by day.' }
+                ]
             },
             'réfléchir': {
                 meaning: 'to think / to reflect',
@@ -692,7 +846,13 @@
                     'Futur Simple': ["je réfléchirai", "tu réfléchiras", "il réfléchira", "nous réfléchirons", "vous réfléchirez", "ils réfléchiront"],
                     'Conditionnel': ["je réfléchirais", "tu réfléchirais", "il réfléchirait", "nous réfléchirions", "vous réfléchiriez", "ils réfléchiraient"],
                     'Subjonctif Présent': ["que je réfléchisse", "que tu réfléchisses", "qu'il réfléchisse", "que nous réfléchissions", "que vous réfléchissiez", "qu'ils réfléchissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je réfléchis à ta proposition.', en: 'I’m thinking about your proposal.' },
+                    { fr: 'Réfléchis avant de répondre !', en: 'Think before answering!' },
+                    { fr: 'Ils réfléchissent à un nouveau plan.', en: 'They are thinking about a new plan.' },
+                    { fr: 'Elle aime réfléchir seule le soir.', en: 'She likes to think alone in the evening.' }
+                ]
             }
         };
 
@@ -707,7 +867,13 @@
                     'Futur Simple': ["je serai", "tu seras", "il sera", "nous serons", "vous serez", "ils seront"],
                     'Conditionnel': ["je serais", "tu serais", "il serait", "nous serions", "vous seriez", "ils seraient"],
                     'Subjonctif Présent': ["que je sois", "que tu sois", "qu'il soit", "que nous soyons", "que vous soyez", "qu'ils soient"]
-                }
+                },
+                examples: [
+                    { fr: 'Je suis étudiante en informatique.', en: 'I am a computer science student.' },
+                    { fr: 'Il est malade aujourd’hui.', en: 'He is sick today.' },
+                    { fr: 'Nous sommes en retard.', en: 'We are late.' },
+                    { fr: 'Ce livre est intéressant.', en: 'This book is interesting.' }
+                ]
             },
             'avoir': {
                 meaning: 'to have',
@@ -718,7 +884,13 @@
                     'Futur Simple': ["j'aurai", "tu auras", "il aura", "nous aurons", "vous aurez", "ils auront"],
                     'Conditionnel': ["j'aurais", "tu aurais", "il aurait", "nous aurions", "vous auriez", "ils auraient"],
                     'Subjonctif Présent': ["que j'aie", "que tu aies", "qu'il ait", "que nous ayons", "que vous ayez", "qu'ils aient"]
-                }
+                },
+                examples: [
+                    { fr: 'J’ai deux frères.', en: 'I have two brothers.' },
+                    { fr: 'Elle a faim.', en: 'She is hungry.' },
+                    { fr: 'Nous avons un problème à résoudre.', en: 'We have a problem to solve.' },
+                    { fr: 'Ils ont vingt ans.', en: 'They are twenty years old.' }
+                ]
             },
             'faire': {
                 meaning: 'to do / to make',
@@ -729,7 +901,13 @@
                     'Futur Simple': ["je ferai", "tu feras", "il fera", "nous ferons", "vous ferez", "ils feront"],
                     'Conditionnel': ["je ferais", "tu ferais", "il ferait", "nous ferions", "vous feriez", "ils feraient"],
                     'Subjonctif Présent': ["que je fasse", "que tu fasses", "qu'il fasse", "que nous fassions", "que vous fassiez", "qu'ils fassent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je fais mes devoirs chaque soir.', en: 'I do my homework every evening.' },
+                    { fr: 'Elle fait du sport le week-end.', en: 'She does sports on weekends.' },
+                    { fr: 'Il fait chaud aujourd’hui.', en: 'It is hot today.' },
+                    { fr: 'Ils font un gâteau pour l’anniversaire.', en: 'They are making a cake for the birthday.' }
+                ]
             },
             'aller': {
                 meaning: 'to go',
@@ -740,7 +918,13 @@
                     'Futur Simple': ["j'irai", "tu iras", "il ira", "nous irons", "vous irez", "ils iront"],
                     'Conditionnel': ["j'irais", "tu irais", "il irait", "nous irions", "vous iriez", "ils iraient"],
                     'Subjonctif Présent': ["que j'aille", "que tu ailles", "qu'il aille", "que nous allions", "que vous alliez", "qu'ils aillent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je vais au marché demain.', en: 'I’m going to the market tomorrow.' },
+                    { fr: 'Nous allons en France cet été.', en: 'We are going to France this summer.' },
+                    { fr: 'Comment ça va ? – Ça va bien.', en: 'How are you? – I’m fine.' },
+                    { fr: 'Les enfants vont à l’école à huit heures.', en: 'The children go to school at 8 o’clock.' }
+                ]
             },
             'pouvoir': {
                 meaning: 'can / to be able to',
@@ -751,7 +935,13 @@
                     'Futur Simple': ["je pourrai", "tu pourras", "il pourra", "nous pourrons", "vous pourrez", "ils pourront"],
                     'Conditionnel': ["je pourrais", "tu pourrais", "il pourrait", "nous pourrions", "vous pourriez", "ils pourraient"],
                     'Subjonctif Présent': ["que je puisse", "que tu puisses", "qu'il puisse", "que nous puissions", "que vous puissiez", "qu'ils puissent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je peux parler anglais et français.', en: 'I can speak English and French.' },
+                    { fr: 'Tu ne peux pas entrer ici sans billet.', en: 'You cannot enter here without a ticket.' },
+                    { fr: 'On peut commencer la réunion maintenant.', en: 'We can start the meeting now.' },
+                    { fr: 'Ils ne peuvent pas venir ce soir.', en: 'They cannot come tonight.' }
+                ]
             },
             'vouloir': {
                 meaning: 'to want',
@@ -762,7 +952,13 @@
                     'Futur Simple': ["je voudrai", "tu voudras", "il voudra", "nous voudrons", "vous voudrez", "ils voudront"],
                     'Conditionnel': ["je voudrais", "tu voudrais", "il voudrait", "nous voudrions", "vous voudriez", "ils voudraient"],
                     'Subjonctif Présent': ["que je veuille", "que tu veuilles", "qu'il veuille", "que nous voulions", "que vous vouliez", "qu'ils veuillent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je veux un café, s’il vous plaît.', en: 'I want a coffee, please.' },
+                    { fr: 'Elle veut devenir médecin.', en: 'She wants to become a doctor.' },
+                    { fr: 'Voulez-vous danser avec moi ?', en: 'Do you want to dance with me?' },
+                    { fr: 'Ils veulent partir tôt demain matin.', en: 'They want to leave early tomorrow morning.' }
+                ]
             },
             'savoir': {
                 meaning: 'to know / to know how',
@@ -773,7 +969,13 @@
                     'Futur Simple': ["je saurai", "tu sauras", "il saura", "nous saurons", "vous saurez", "ils sauront"],
                     'Conditionnel': ["je saurais", "tu saurais", "il saurait", "nous saurions", "vous sauriez", "ils sauraient"],
                     'Subjonctif Présent': ["que je sache", "que tu saches", "qu'il sache", "que nous sachions", "que vous sachiez", "qu'ils sachent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je sais la réponse à cette question.', en: 'I know the answer to this question.' },
+                    { fr: 'Il sait jouer de la guitare.', en: 'He knows how to play the guitar.' },
+                    { fr: 'Sais-tu où il habite ?', en: 'Do you know where he lives?' },
+                    { fr: 'Nous savons que tu dis la vérité.', en: 'We know that you are telling the truth.' }
+                ]
             },
             'venir': {
                 meaning: 'to come',
@@ -784,7 +986,13 @@
                     'Futur Simple': ["je viendrai", "tu viendras", "il viendra", "nous viendrons", "vous viendrez", "ils viendront"],
                     'Conditionnel': ["je viendrais", "tu viendrais", "il viendrait", "nous viendrions", "vous viendriez", "ils viendraient"],
                     'Subjonctif Présent': ["que je vienne", "que tu viennes", "qu'il vienne", "que nous venions", "que vous veniez", "qu'ils viennent"]
-                }
+                },
+                examples: [
+                    { fr: 'Viens avec moi !', en: 'Come with me!' },
+                    { fr: 'Ils viennent de Paris.', en: 'They come from Paris.' },
+                    { fr: 'Je viens d’arriver à l’aéroport.', en: 'I just arrived at the airport.' },
+                    { fr: 'Elle vient souvent chez ses grands-parents.', en: 'She often comes to her grandparents’ place.' }
+                ]
             },
             'dire': {
                 meaning: 'to say / to tell',
@@ -795,7 +1003,13 @@
                     'Futur Simple': ["je dirai", "tu diras", "il dira", "nous dirons", "vous direz", "ils diront"],
                     'Conditionnel': ["je dirais", "tu dirais", "il dirait", "nous dirions", "vous diriez", "ils diraient"],
                     'Subjonctif Présent': ["que je dise", "que tu dises", "qu'il dise", "que nous disions", "que vous disiez", "qu'ils disent"]
-                }
+                },
+                examples: [
+                    { fr: 'Que dis-tu ?', en: 'What are you saying?' },
+                    { fr: 'Il m’a dit la vérité.', en: 'He told me the truth.' },
+                    { fr: 'Nous disons toujours bonjour aux voisins.', en: 'We always say hello to the neighbors.' },
+                    { fr: 'On dit que ce film est excellent.', en: 'They say this movie is excellent.' }
+                ]
             },
             'devoir': {
                 meaning: 'must / should',
@@ -806,7 +1020,13 @@
                     'Futur Simple': ["je devrai", "tu devras", "il devra", "nous devrons", "vous devrez", "ils devront"],
                     'Conditionnel': ["je devrais", "tu devrais", "il devrait", "nous devrions", "vous devriez", "ils devraient"],
                     'Subjonctif Présent': ["que je doive", "que tu doives", "qu'il doive", "que nous devions", "que vous deviez", "qu'ils doivent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je dois partir maintenant.', en: 'I must leave now.' },
+                    { fr: 'Tu dois finir tes devoirs avant de sortir.', en: 'You must finish your homework before going out.' },
+                    { fr: 'Elle doit beaucoup d’argent à la banque.', en: 'She owes a lot of money to the bank.' },
+                    { fr: 'Nous devons respecter les règles.', en: 'We must follow the rules.' }
+                ]
             },
             'prendre': {
                 meaning: 'to take',
@@ -817,7 +1037,13 @@
                     'Futur Simple': ["je prendrai", "tu prendras", "il prendra", "nous prendrons", "vous prendrez", "ils prendront"],
                     'Conditionnel': ["je prendrais", "tu prendrais", "il prendrait", "nous prendrions", "vous prendriez", "ils prendraient"],
                     'Subjonctif Présent': ["que je prenne", "que tu prennes", "qu'il prenne", "que nous prenions", "que vous preniez", "qu'ils prennent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je prends le bus tous les matins.', en: 'I take the bus every morning.' },
+                    { fr: 'Elle prend une photo du paysage.', en: 'She takes a picture of the landscape.' },
+                    { fr: 'Nous prenons le petit déjeuner à huit heures.', en: 'We have breakfast at eight o’clock.' },
+                    { fr: 'Ils prennent leurs vacances en juillet.', en: 'They take their holidays in July.' }
+                ]
             },
             'mettre': {
                 meaning: 'to put / to place',
@@ -828,7 +1054,13 @@
                     'Futur Simple': ["je mettrai", "tu mettras", "il mettra", "nous mettrons", "vous mettrez", "ils mettront"],
                     'Conditionnel': ["je mettrais", "tu mettrais", "il mettrait", "nous mettrions", "vous mettriez", "ils mettraient"],
                     'Subjonctif Présent': ["que je mette", "que tu mettes", "qu'il mette", "que nous mettions", "que vous mettiez", "qu'ils mettent"]
-                }
+                },
+                examples: [
+                    { fr: 'Mets ton manteau, il fait froid.', en: 'Put on your coat, it’s cold.' },
+                    { fr: 'Il met les clés sur la table.', en: 'He puts the keys on the table.' },
+                    { fr: 'Nous mettons deux heures pour y aller.', en: 'It takes us two hours to get there.' },
+                    { fr: 'Elle met beaucoup de temps à se préparer.', en: 'She takes a long time to get ready.' }
+                ]
             },
             'voir': {
                 meaning: 'to see',
@@ -839,7 +1071,13 @@
                     'Futur Simple': ["je verrai", "tu verras", "il verra", "nous verrons", "vous verrez", "ils verront"],
                     'Conditionnel': ["je verrais", "tu verrais", "il verrait", "nous verrions", "vous verriez", "ils verraient"],
                     'Subjonctif Présent': ["que je voie", "que tu voies", "qu'il voie", "que nous voyions", "que vous voyiez", "qu'ils voient"]
-                }
+                },
+                examples: [
+                    { fr: 'Je vois les étoiles dans le ciel.', en: 'I see the stars in the sky.' },
+                    { fr: 'Tu verras, tout ira bien.', en: 'You will see, everything will be fine.' },
+                    { fr: 'Il ne voit rien sans lunettes.', en: 'He can’t see anything without glasses.' },
+                    { fr: 'Je vois ce que tu veux dire.', en: 'I see what you mean.' }
+                ]
             },
             'croire': {
                 meaning: 'to believe / to think',
@@ -850,7 +1088,13 @@
                     'Futur Simple': ["je croirai", "tu croiras", "il croira", "nous croirons", "vous croirez", "ils croiront"],
                     'Conditionnel': ["je croirais", "tu croirais", "il croirait", "nous croirions", "vous croiriez", "ils croiraient"],
                     'Subjonctif Présent': ["que je croie", "que tu croies", "qu'il croie", "que nous croyions", "que vous croyiez", "qu'ils croient"]
-                }
+                },
+                examples: [
+                    { fr: 'Je crois en Dieu.', en: 'I believe in God.' },
+                    { fr: 'Il croit que tu plaisantes.', en: 'He thinks you are joking.' },
+                    { fr: 'Nous croyons à son innocence.', en: 'We believe in his innocence.' },
+                    { fr: 'Crois-moi, c’est vrai !', en: 'Believe me, it’s true!' }
+                ]
             },
             'tenir': {
                 meaning: 'to hold / to keep',
@@ -861,7 +1105,13 @@
                     'Futur Simple': ["je tiendrai", "tu tiendras", "il tiendra", "nous tiendrons", "vous tiendrez", "ils tiendront"],
                     'Conditionnel': ["je tiendrais", "tu tiendrais", "il tiendrait", "nous tiendrions", "vous tiendriez", "ils tiendraient"],
                     'Subjonctif Présent': ["que je tienne", "que tu tiennes", "qu'il tienne", "que nous tenions", "que vous teniez", "qu'ils tiennent"]
-                }
+                },
+                examples: [
+                    { fr: 'Tiens ma main !', en: 'Hold my hand!' },
+                    { fr: 'Elle tient un parapluie.', en: 'She is holding an umbrella.' },
+                    { fr: 'Ils tiennent à leurs traditions.', en: 'They are attached to their traditions.' },
+                    { fr: 'L’hôtel peut tenir cent personnes.', en: 'The hotel can hold one hundred people.' }
+                ]
             },
             'sortir': {
                 meaning: 'to go out / to leave',
@@ -872,7 +1122,13 @@
                     'Futur Simple': ["je sortirai", "tu sortiras", "il sortira", "nous sortirons", "vous sortirez", "ils sortiront"],
                     'Conditionnel': ["je sortirais", "tu sortirais", "il sortirait", "nous sortirions", "vous sortiriez", "ils sortiraient"],
                     'Subjonctif Présent': ["que je sorte", "que tu sortes", "qu'il sorte", "que nous sortions", "que vous sortiez", "qu'ils sortent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je sors avec mes amis ce soir.', en: 'I’m going out with my friends tonight.' },
+                    { fr: 'Elle sort une boîte de son sac.', en: 'She takes a box out of her bag.' },
+                    { fr: 'Nous sortons souvent au restaurant.', en: 'We often go out to restaurants.' },
+                    { fr: 'Le soleil sort après la pluie.', en: 'The sun comes out after the rain.' }
+                ]
             },
             'comprendre': {
                 meaning: 'to understand',
@@ -883,7 +1139,13 @@
                     'Futur Simple': ["je comprendrai", "tu comprendras", "il comprendra", "nous comprendrons", "vous comprendrez", "ils comprendront"],
                     'Conditionnel': ["je comprendrais", "tu comprendrais", "il comprendrait", "nous comprendrions", "vous comprendriez", "ils comprendraient"],
                     'Subjonctif Présent': ["que je comprenne", "que tu comprennes", "qu'il comprenne", "que nous comprenions", "que vous compreniez", "qu'ils comprennent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je comprends la question.', en: 'I understand the question.' },
+                    { fr: 'Elle ne comprend pas pourquoi il est parti.', en: 'She doesn’t understand why he left.' },
+                    { fr: 'Nous comprenons bien le problème.', en: 'We understand the problem well.' },
+                    { fr: 'Tu comprends ce livre ?', en: 'Do you understand this book?' }
+                ]
             },
             'partir': {
                 meaning: 'to leave / to depart',
@@ -894,7 +1156,13 @@
                     'Futur Simple': ["je partirai", "tu partiras", "il partira", "nous partirons", "vous partirez", "ils partiront"],
                     'Conditionnel': ["je partirais", "tu partirais", "il partirait", "nous partirions", "vous partiriez", "ils partiraient"],
                     'Subjonctif Présent': ["que je parte", "que tu partes", "qu'il parte", "que nous partions", "que vous partiez", "qu'ils partent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je pars demain matin.', en: 'I’m leaving tomorrow morning.' },
+                    { fr: 'Ils partent en vacances en août.', en: 'They leave on vacation in August.' },
+                    { fr: 'Elle part du bureau à six heures.', en: 'She leaves the office at six o’clock.' },
+                    { fr: 'Nous partons tôt pour éviter le trafic.', en: 'We leave early to avoid traffic.' }
+                ]
             },
             'vivre': {
                 meaning: 'to live',
@@ -905,7 +1173,13 @@
                     'Futur Simple': ["je vivrai", "tu vivras", "il vivra", "nous vivrons", "vous vivrez", "ils vivront"],
                     'Conditionnel': ["je vivrais", "tu vivrais", "il vivrait", "nous vivrions", "vous vivriez", "ils vivraient"],
                     'Subjonctif Présent': ["que je vive", "que tu vives", "qu'il vive", "que nous vivions", "que vous viviez", "qu'ils vivent"]
-                }
+                },
+                examples: [
+                    { fr: 'Je vis à Ottawa depuis deux ans.', en: 'I have been living in Ottawa for two years.' },
+                    { fr: 'Il vit heureux avec sa famille.', en: 'He lives happily with his family.' },
+                    { fr: 'Nous vivons dans un monde moderne.', en: 'We live in a modern world.' },
+                    { fr: 'Elle a vécu une expérience incroyable.', en: 'She experienced an incredible adventure.' }
+                ]
             },
             'recevoir': {
                 meaning: 'to receive',
@@ -916,7 +1190,13 @@
                     'Futur Simple': ["je recevrai", "tu recevras", "il recevra", "nous recevrons", "vous recevrez", "ils recevront"],
                     'Conditionnel': ["je recevrais", "tu recevrais", "il recevrait", "nous recevrions", "vous recevriez", "ils recevraient"],
                     'Subjonctif Présent': ["que je reçoive", "que tu reçoives", "qu'il reçoive", "que nous recevions", "que vous receviez", "qu'ils reçoivent"]
-                }
+                },
+                examples: [
+                    { fr: 'J’ai reçu une lettre hier.', en: 'I received a letter yesterday.' },
+                    { fr: 'Elle reçoit beaucoup de visiteurs.', en: 'She receives many visitors.' },
+                    { fr: 'Nous recevons des informations chaque semaine.', en: 'We receive information every week.' },
+                    { fr: 'Ils ont bien reçu le colis.', en: 'They received the package safely.' }
+                ]
             }
         };
 
@@ -1048,10 +1328,12 @@
             // Generate Header
             tableHead.innerHTML = `<th class="sticky-col-1">Verb</th><th class="sticky-col-2">Pronoun</th>` + tenses.map(t => `<th>${t.replace(' ', '<br>')}</th>`).join('');
 
-            // Generate Body - 6 rows per verb (one for each pronoun)
+            // Generate Body
             const verbNames = Object.keys(verbs);
             verbNames.forEach((verbName, verbIndex) => {
                 const verbInfo = verbs[verbName];
+                const hasExamples = verbInfo.examples && verbInfo.examples.length > 0;
+                const rowSpan = hasExamples ? 7 : 6;
 
                 persons.forEach((person, personIndex) => {
                     const row = tableBody.insertRow();
@@ -1063,7 +1345,7 @@
 
                     // First row of each verb shows verb name and meaning
                     const verbCell = personIndex === 0
-                        ? `<td class="verb-name sticky-col-1" rowspan="6" data-verb="${verbName}">${verbName}<br>(${verbInfo.meaning})</td>`
+                        ? `<td class="verb-name sticky-col-1" rowspan="${rowSpan}" data-verb="${verbName}">${verbName}<br>(${verbInfo.meaning})</td>`
                         : '';
 
                     // Pronoun cell
@@ -1082,6 +1364,24 @@
 
                     row.innerHTML = verbCell + pronounCell + conjugationCells;
                 });
+
+                if (hasExamples) {
+                    const examplesRow = tableBody.insertRow();
+                    const examplesCell = examplesRow.insertCell();
+                    examplesCell.colSpan = tenses.length + 1;
+                    examplesCell.className = 'examples-cell';
+
+                    let examplesHTML = '<div class="examples-container">';
+                    examplesHTML += '<h5 class="examples-header">Example Sentences</h5>';
+                    verbInfo.examples.forEach(ex => {
+                        examplesHTML += `<div class="example-item">
+                                           <p class="example-fr">${ex.fr}</p>
+                                           <p class="example-en">→ ${ex.en}</p>
+                                         </div>`;
+                    });
+                    examplesHTML += '</div>';
+                    examplesCell.innerHTML = examplesHTML;
+                }
             });
         }
 
